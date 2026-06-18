@@ -1,0 +1,371 @@
+@import "tailwindcss";
+
+/* ─── Light Mode Tokens ─── */
+:root {
+  /* Core surfaces — crisp, modern */
+  --color-bg: #f3f6f5;
+  --color-bg-card: #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-sidebar: #09090b; /* Premium onyx black, completely uniform across modes */
+  --color-bg-input: #ffffff;
+  --color-bg-hover: #f1f5f9;
+  --color-bg-muted: #f1f5f9;
+
+  /* Accent palette — vibrant teal */
+  --color-accent: #0d9488;
+  --color-accent-hover: #0f766e;
+  --color-accent-light: #ccfbf1;
+  --color-accent-muted: #f0fdfa;
+
+  /* Semantic colors */
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-warm: #f59e0b;
+  --color-warm-light: #fef3c7;
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+
+  /* Text — deep slate for high readability */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #ffffff;
+  --color-text-accent: #0d9488;
+
+  /* Aliases used in some components */
+  --color-text: var(--color-text-primary);
+  --color-text-subtle: var(--color-text-secondary);
+  --color-bg-subtle: var(--color-bg-muted);
+
+  /* Borders — crisp and delicate */
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-border-accent: #0d9488;
+
+  /* Shadows — elegant, diffused */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.03), 0 0 0 1px rgba(15, 23, 42, 0.02);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.02);
+  --shadow-xl: 0 20px 40px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.02);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Background Mesh (Light Mode Only) */
+  --bg-mesh: radial-gradient(at 0% 0%, hsla(170, 80%, 92%, 1) 0px, transparent 50%),
+             radial-gradient(at 100% 0%, hsla(210, 80%, 92%, 1) 0px, transparent 50%),
+             radial-gradient(at 100% 100%, hsla(150, 80%, 92%, 1) 0px, transparent 50%),
+             radial-gradient(at 0% 100%, hsla(190, 80%, 92%, 1) 0px, transparent 50%);
+}
+
+/* ─── Dark Mode Tokens ─── */
+[data-theme="dark"] {
+  --color-bg: #111311;
+  --color-bg-card: #1a1d1a;
+  --color-bg-elevated: #1e211e;
+  --color-bg-sidebar: #09090b; /* Premium onyx black, completely uniform across modes */
+  --color-bg-input: #1a1d1a;
+  --color-bg-hover: #252825;
+  --color-bg-muted: #1a1d1a;
+
+  --color-accent: #5ab8a8;
+  --color-accent-hover: #6cc9b9;
+  --color-accent-light: #1e3a35;
+  --color-accent-muted: #162e2a;
+
+  --color-success: #34d399;
+  --color-success-light: #162e2a;
+  --color-warm: #fbbf24;
+  --color-warm-light: #3d2c08;
+  --color-danger: #f87171;
+  --color-danger-light: #3b1010;
+
+  --color-text-primary: #f5f5f4;
+  --color-text-secondary: #a8a29e;
+  --color-text-muted: #78716c;
+  --color-text-inverse: #1c1917;
+  --color-text-accent: #5ab8a8;
+
+  /* Aliases */
+  --color-text: var(--color-text-primary);
+  --color-text-subtle: var(--color-text-secondary);
+  --color-bg-subtle: var(--color-bg-muted);
+
+  --color-border: #2d302d;
+  --color-border-strong: #3d403d;
+  --color-border-accent: #5ab8a8;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Tailwind Theme Extensions ─── */
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text-primary);
+  --font-sans: var(--font-sans, "Inter", ui-sans-serif, system-ui, sans-serif);
+  --font-serif: var(--font-serif, "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif);
+  --font-reading: var(--font-reading, "Source Serif 4", Georgia, serif);
+  --font-mono: ui-monospace, monospace;
+}
+
+/* ─── Base Styles ─── */
+body {
+  background: var(--color-bg);
+  background-image: var(--bg-mesh, none);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans, "Inter", ui-sans-serif, system-ui, sans-serif);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: var(--color-accent-light);
+  color: var(--color-text-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+/* ─── Accessibility: Focus Visible ─── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip-to-content visually hidden until focused */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ─── Typography ─── */
+.font-heading {
+  font-family: var(--font-serif, "Instrument Serif", Georgia, serif);
+}
+
+.font-reading {
+  font-family: var(--font-reading, "Source Serif 4", Georgia, serif);
+}
+
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+.text-accent { color: var(--color-text-accent); }
+
+/* ─── Surface Utilities ─── */
+.bg-surface { background-color: var(--color-bg); }
+.bg-card { background-color: var(--color-bg-card); }
+.bg-elevated { background-color: var(--color-bg-elevated); }
+.bg-sidebar { background-color: var(--color-bg-sidebar); }
+.bg-input { background-color: var(--color-bg-input); }
+.bg-hover { background-color: var(--color-bg-hover); }
+.bg-muted-surface { background-color: var(--color-bg-muted); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-accent-light { background-color: var(--color-accent-light); }
+.bg-accent-muted { background-color: var(--color-accent-muted); }
+
+/* ─── Border Utilities ─── */
+.border-default { border-color: var(--color-border); }
+.border-strong { border-color: var(--color-border-strong); }
+.border-accent { border-color: var(--color-border-accent); }
+
+/* ─── Shadow Utilities ─── */
+.shadow-surface-sm { box-shadow: var(--shadow-sm); }
+.shadow-surface-md { box-shadow: var(--shadow-md); }
+.shadow-surface-lg { box-shadow: var(--shadow-lg); }
+.shadow-surface-xl { box-shadow: var(--shadow-xl); }
+
+/* ─── Card Component ─── */
+.card {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+.card-flat {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* ─── Button Variants ─── */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+/* ─── Input Styles ─── */
+.input-field {
+  background-color: var(--color-bg-input);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-field:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-muted);
+}
+
+.input-field::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ─── Connector Word Highlight ─── */
+mark {
+  background-color: var(--color-accent-light);
+  color: var(--color-text-accent);
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-weight: 600;
+}
+
+/* ─── Scrollbar Styling ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text-muted);
+}
+
+/* ─── Sidebar Active Link ─── */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #a1a1aa;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #fafafa;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.nav-link.active {
+  color: #fafafa;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* ─── Responsive helpers ─── */
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+}
