@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Clock, CheckCircle2, XCircle, ArrowLeft, Send } from "lucide-react";
 import Link from "next/link";
-import { useAuth } from "@clerk/nextjs";
+import { createClient } from "@/utils/supabase/client";
 import RCResultsView from "./RCResultsView";
 
 type Option = {
@@ -45,7 +45,16 @@ export default function RCPracticeClient({ passage, questions }: { passage: Pass
   const [fontZoom, setFontZoom] = useState(110);
   const [viewMode, setViewMode] = useState<"test" | "results">("test");
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
-  const { isSignedIn } = useAuth();
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const supabase = createClient();
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsSignedIn(!!session);
+    };
+    checkAuth();
+  }, []);
 
   useEffect(() => {
     // Load from sessionStorage if available (for after sign-in)

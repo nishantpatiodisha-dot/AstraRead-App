@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+import { createClient } from "@/utils/supabase/server";
 
 const ADMIN_USER_IDS = process.env.ADMIN_CLERK_IDS
   ? process.env.ADMIN_CLERK_IDS.split(",")
@@ -18,9 +18,10 @@ export async function requireAdminApi(): Promise<string | Response> {
     return "dev-admin";
   }
 
-  const { userId } = await auth();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  if (!userId) {
+  if (!user) {
     return Response.json(
       { error: "Unauthorized — not signed in" },
       { status: 401 }
