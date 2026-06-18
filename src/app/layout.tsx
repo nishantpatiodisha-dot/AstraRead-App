@@ -64,12 +64,14 @@ export default function RootLayout({
         className={`${inter.variable} ${instrumentSerif.variable} ${sourceSerif4.variable} h-full`}
         suppressHydrationWarning
       >
+        <head>
+          <GoogleAnalytics />
+        </head>
         <body className="min-h-full flex flex-col antialiased font-sans" suppressHydrationWarning>
           <ThemeProvider>
             <PWARegistrar />
             {children}
             <Analytics />
-            <GoogleAnalytics />
           </ThemeProvider>
         </body>
       </html>
