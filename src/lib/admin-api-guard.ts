@@ -28,12 +28,12 @@ export async function requireAdminApi(): Promise<string | Response> {
     );
   }
 
-  if (ADMIN_USER_IDS.length > 0 && !ADMIN_USER_IDS.includes(userId)) {
+  if (ADMIN_USER_IDS.length > 0 && !ADMIN_USER_IDS.includes(user.id)) {
     return Response.json(
       { error: "Forbidden — admin access required" },
       { status: 403 }
     );
   }
 
-  return userId;
+  return user.id;
 }
