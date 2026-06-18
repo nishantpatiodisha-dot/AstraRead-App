@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { signup, signInWithGoogle } from '@/app/auth/actions'
-import { Brain, ArrowRight, Chrome } from 'lucide-react'
+import { Brain, ArrowRight } from 'lucide-react'
 
 export default function SignupPage() {
   const [error, setError] = useState<string | null>(null)
@@ -111,7 +111,6 @@ export default function SignupPage() {
               type="submit"
               className="w-full bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] font-medium rounded-xl px-4 py-3 flex items-center justify-center gap-3 hover:bg-[var(--color-bg-subtle)] transition-colors"
             >
-              <Chrome size={18} />
               Continue with Google
             </button>
           </form>
