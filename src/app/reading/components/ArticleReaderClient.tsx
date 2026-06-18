@@ -97,18 +97,18 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
   return (
     <ImmersiveShell
       rightAction={
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <button
             onClick={() => setAnalysisMode(!analysisMode)}
             className={cn(
-              "flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors",
+              "flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-full text-xs font-semibold transition-colors",
               analysisMode
                 ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300"
                 : "bg-[var(--color-bg-subtle)] text-[var(--color-text-subtle)] hover:bg-stone-200 dark:hover:bg-stone-800"
             )}
           >
             <Lightbulb size={14} />
-            {analysisMode ? "Analysis On" : "Analysis"}
+            <span className="hidden sm:inline">{analysisMode ? "Analysis On" : "Analysis"}</span>
           </button>
 
           <div className="flex items-center gap-1 rounded-lg border px-1" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
@@ -127,9 +127,9 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
       <main className="mx-auto max-w-4xl px-6 lg:px-8 py-12 lg:py-16">
 
         {/* Title */}
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-10 sm:mb-16">
           <h1 className={cn(
-            "text-5xl sm:text-[3.5rem] font-bold leading-[1.1] tracking-tight mb-8 font-serif",
+            "text-3xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] sm:leading-[1.1] tracking-tight mb-6 sm:mb-8 font-serif",
             "text-[var(--color-text)]"
           )}>
             {article.title}
@@ -163,19 +163,19 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
                   {isHeading ? (
                     <h2
                       className={cn(
-                        "font-serif italic font-bold mt-16 mb-6 tracking-tight leading-snug transition-colors duration-300",
+                        "font-serif italic font-bold mt-12 sm:mt-16 mb-4 sm:mb-6 tracking-tight leading-snug transition-colors duration-300",
                         "text-[var(--color-accent)]"
                       )}
-                      style={{ fontSize: `${fontSize * 1.6}px` }}
+                      style={{ fontSize: `calc(${fontSize}px * 1.3)` }}
                     >
                       {text}
                     </h2>
                   ) : (
                     <p
                       className={cn(
-                        "leading-[1.75] transition-colors duration-300 font-reading",
+                        "leading-[1.55] sm:leading-[1.75] transition-colors duration-300 font-reading",
                         "text-[var(--color-text)]",
-                        isFirst && "first-letter:text-[4em] first-letter:font-bold first-letter:float-left first-letter:mr-4 first-letter:leading-[0.8] first-letter:mt-2 first-letter:font-serif"
+                        isFirst && "first-letter:text-[3.5em] sm:first-letter:text-[4em] first-letter:font-bold first-letter:float-left first-letter:mr-3 sm:first-letter:mr-4 first-letter:leading-[0.8] first-letter:mt-1 sm:first-letter:mt-2 first-letter:font-serif break-words"
                       )}
                       style={{ fontSize: `${fontSize}px` }}
                     >

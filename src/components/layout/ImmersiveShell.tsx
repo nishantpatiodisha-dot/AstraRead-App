@@ -15,7 +15,7 @@ export default function ImmersiveShell({ children, rightAction }: ImmersiveShell
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--color-bg)" }}>
+    <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: "var(--color-bg)" }}>
       {/* Minimal header: back button + dark mode toggle */}
       <header
         className="sticky top-0 z-30 flex h-12 items-center justify-between border-b px-4 backdrop-blur-md"
@@ -44,7 +44,7 @@ export default function ImmersiveShell({ children, rightAction }: ImmersiveShell
           {rightAction}
           <Link
             href="/"
-            className="text-sm font-medium"
+            className="text-sm font-medium hidden sm:block"
             style={{ color: "var(--color-text-accent)" }}
           >
             AstraRead
