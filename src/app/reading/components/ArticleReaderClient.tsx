@@ -127,9 +127,9 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
       <main className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
 
         {/* Title */}
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-6 sm:mb-16">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-4 sm:mb-16">
           <h1 className={cn(
-            "text-2xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.15] sm:leading-[1.1] tracking-tight mb-4 sm:mb-8 font-serif",
+            "text-2xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.15] sm:leading-[1.1] tracking-tight mb-2 sm:mb-8 font-serif",
             "text-[var(--color-text)]"
           )}>
             {article.title}
@@ -163,10 +163,10 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
                   {isHeading ? (
                     <h2
                       className={cn(
-                        "font-serif italic font-bold mt-12 sm:mt-16 mb-4 sm:mb-6 tracking-tight leading-snug transition-colors duration-300",
+                        "font-serif italic font-bold mt-6 sm:mt-16 mb-3 sm:mb-6 tracking-tight leading-snug transition-colors duration-300",
                         "text-[var(--color-accent)]"
                       )}
-                      style={{ fontSize: `calc(${fontSize}px * 1.3)` }}
+                      style={{ fontSize: `calc(${fontSize}px * 1.15)` }}
                     >
                       {text}
                     </h2>
@@ -175,7 +175,7 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
                       className={cn(
                         "leading-[1.4] sm:leading-[1.75] transition-colors duration-300 font-reading",
                         "text-[var(--color-text)]",
-                        isFirst && "first-letter:text-[3em] sm:first-letter:text-[4em] first-letter:font-bold first-letter:float-left first-letter:mr-2 sm:first-letter:mr-4 first-letter:leading-[0.8] first-letter:mt-1 sm:first-letter:mt-2 first-letter:font-serif break-words"
+                        isFirst && "first-letter:text-[2.5em] sm:first-letter:text-[4em] first-letter:font-bold first-letter:float-left first-letter:mr-2 sm:first-letter:mr-4 first-letter:leading-[0.8] first-letter:mt-1 sm:first-letter:mt-2 first-letter:font-serif break-words"
                       )}
                       style={{ fontSize: `${fontSize}px` }}
                     >
