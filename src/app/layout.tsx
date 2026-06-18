@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Instrument_Serif, Source_Serif_4 } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { ClerkProvider } from "@clerk/nextjs";
 import { PWARegistrar } from "@/components/PWARegistrar";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -60,7 +59,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
       <html
         lang="en"
         className={`${inter.variable} ${instrumentSerif.variable} ${sourceSerif4.variable} h-full`}
@@ -75,6 +73,5 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }

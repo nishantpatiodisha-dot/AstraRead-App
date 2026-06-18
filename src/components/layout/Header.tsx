@@ -1,8 +1,11 @@
 "use client";
 
 import { useTheme } from "@/components/layout/ThemeProvider";
-import { Moon, Sun, User } from "lucide-react";
-import { Show, SignInButton, UserButton } from "@clerk/nextjs";
+import { Moon, Sun, User, LogOut } from "lucide-react";
+import { useState, useEffect } from "react";
+import { createClient } from "@/utils/supabase/client";
+import { signOut } from "@/app/auth/actions";
+import Link from "next/link";
 
 interface HeaderProps {
   title?: string;
@@ -11,6 +14,20 @@ interface HeaderProps {
 
 export default function Header({ title, icon }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   return (
     <header
@@ -57,36 +74,46 @@ export default function Header({ title, icon }: HeaderProps) {
           {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
         </button>
 
-        <Show when="signed-in">
-          <UserButton 
-            appearance={{
-              elements: {
-                userButtonAvatarBox: "size-9",
-              }
-            }} 
-          />
-        </Show>
-        <Show when="signed-out">
-          <SignInButton mode="modal">
+        {user ? (
+          <form action={signOut}>
             <button
-              className="text-sm font-medium px-4 py-1.5 rounded-full transition-colors"
+              type="submit"
+              className="ml-2 flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-full transition-colors border border-[var(--color-border)]"
               style={{
-                backgroundColor: "var(--color-bg-hover)",
+                backgroundColor: "var(--color-bg)",
                 color: "var(--color-text-primary)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--color-accent-muted)";
-                e.currentTarget.style.color = "var(--color-text-accent)";
+                e.currentTarget.style.backgroundColor = "var(--color-bg-hover)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--color-bg-hover)";
-                e.currentTarget.style.color = "var(--color-text-primary)";
+                e.currentTarget.style.backgroundColor = "var(--color-bg)";
               }}
             >
-              Sign in
+              <LogOut size={14} />
+              <span className="hidden sm:inline">Sign out</span>
             </button>
-          </SignInButton>
-        </Show>
+          </form>
+        ) : (
+          <Link
+            href="/login"
+            className="ml-2 text-sm font-medium px-5 py-1.5 rounded-full transition-colors"
+            style={{
+              backgroundColor: "var(--color-bg-hover)",
+              color: "var(--color-text-primary)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-accent-muted)";
+              e.currentTarget.style.color = "var(--color-text-accent)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-bg-hover)";
+              e.currentTarget.style.color = "var(--color-text-primary)";
+            }}
+          >
+            Sign in
+          </Link>
+        )}
       </div>
     </header>
   );

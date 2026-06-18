@@ -60,7 +60,7 @@ export function LoggedOutDashboard() {
             <ArrowRight className="w-5 h-5" />
           </Link>
           <Link 
-            href="/sign-up" 
+            href="/signup" 
             className="inline-flex items-center justify-center gap-2 border-2 border-[var(--color-border)] text-[var(--color-text)] px-8 py-4 rounded-xl font-semibold text-lg hover:border-[var(--color-text)] transition-colors"
           >
             Sign up free
