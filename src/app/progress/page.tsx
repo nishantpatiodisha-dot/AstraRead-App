@@ -5,6 +5,7 @@ import HubShell from "@/components/layout/HubShell";
 import { Activity, BookOpen, GraduationCap, CheckCircle } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,7 +18,25 @@ export const dynamic = 'force-dynamic';
 export default async function ProgressPage() {
   const user = await getCurrentUser();
   if (!user || !user.dbUser) {
-    redirect("/auth/signin");
+    return (
+      <HubShell title="Progress" icon={<Activity className="w-5 h-5 text-[var(--color-text-subtle)]" />}>
+        <div className="max-w-5xl mx-auto py-24 px-6 text-center fade-in">
+          <Activity size={64} className="mx-auto mb-6 text-emerald-500/50" />
+          <h1 className="text-3xl font-serif text-[var(--color-text)] mb-4">Track Your Mastery</h1>
+          <p className="text-[var(--color-text-subtle)] max-w-md mx-auto mb-8">
+            Create a free account to track your reading streaks, RC attempts, and grammar progress over time.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Link href="/signup" className="px-6 py-3 bg-[var(--color-text)] hover:opacity-90 text-[var(--color-bg)] font-medium rounded-xl transition-opacity">
+              Create Free Account
+            </Link>
+            <Link href="/login" className="px-6 py-3 bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border)] text-[var(--color-text)] font-medium rounded-xl transition-colors">
+              Log In
+            </Link>
+          </div>
+        </div>
+      </HubShell>
+    );
   }
 
   const db = getDb();

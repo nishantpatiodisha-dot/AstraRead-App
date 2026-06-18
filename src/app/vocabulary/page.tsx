@@ -18,7 +18,25 @@ export const dynamic = 'force-dynamic';
 export default async function VocabularyPage() {
   const user = await getCurrentUser();
   if (!user || !user.dbUser) {
-    redirect("/auth/signin");
+    return (
+      <HubShell title="Vocabulary" icon={<BookA className="w-5 h-5 text-[var(--color-text-subtle)]" />}>
+        <div className="max-w-5xl mx-auto py-24 px-6 text-center fade-in">
+          <BookA size={64} className="mx-auto mb-6 text-emerald-500/50" />
+          <h1 className="text-3xl font-serif text-[var(--color-text)] mb-4">Build Your Lexicon</h1>
+          <p className="text-[var(--color-text-subtle)] max-w-md mx-auto mb-8">
+            Sign up to save difficult words directly from articles, review them with spaced repetition, and master CAT-level vocabulary.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Link href="/signup" className="px-6 py-3 bg-[var(--color-text)] hover:opacity-90 text-[var(--color-bg)] font-medium rounded-xl transition-opacity">
+              Create Free Account
+            </Link>
+            <Link href="/login" className="px-6 py-3 bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border)] text-[var(--color-text)] font-medium rounded-xl transition-colors">
+              Log In
+            </Link>
+          </div>
+        </div>
+      </HubShell>
+    );
   }
 
   const db = getDb();
