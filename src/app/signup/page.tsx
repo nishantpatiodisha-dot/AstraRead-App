@@ -19,6 +19,10 @@ export default function SignupPage() {
     }
   }
 
+  async function handleGoogleSignIn() {
+    await signInWithGoogle()
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--color-bg)]">
       {/* Background ambient orbs */}
@@ -106,7 +110,7 @@ export default function SignupPage() {
             <div className="h-px flex-1 bg-[var(--color-border)]" />
           </div>
 
-          <form action={signInWithGoogle} className="mt-6">
+          <form action={handleGoogleSignIn} className="mt-6">
             <button 
               type="submit"
               className="w-full bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] font-medium rounded-xl px-4 py-3 flex items-center justify-center gap-3 hover:bg-[var(--color-bg-subtle)] transition-colors"
