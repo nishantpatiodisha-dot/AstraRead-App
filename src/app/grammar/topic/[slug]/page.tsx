@@ -143,7 +143,8 @@ export default async function GrammarLessonPage(
     .orderBy(asc(grammarExercises.sortOrder));
 
   const user = await getCurrentUser();
-  const isPremium = process.env.NODE_ENV === 'development' || user?.dbUser?.subscriptionTier === 'premium';
+  // Premium check bypassed for now (easy toggle later)
+  const isPremium = true; // process.env.NODE_ENV === 'development' || user?.dbUser?.subscriptionTier === 'premium';
   
   // Topic with sortOrder > 1 are locked for free users
   const isLocked = !isPremium && topic.sortOrder > 1;

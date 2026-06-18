@@ -18,7 +18,8 @@ async function fetchLibraryArticles(): Promise<Article[]> {
   try {
     const db = getDb();
     const user = await getCurrentUser();
-    const isPremium = user?.dbUser?.subscriptionTier === 'premium';
+    // Premium check bypassed for now (easy toggle later)
+    const isPremium = true; // user?.dbUser?.subscriptionTier === 'premium';
 
     const dbArticles = await db.select({
       slug: articles.slug,

@@ -19,7 +19,8 @@ export const dynamic = 'force-dynamic';
 export default async function GrammarIndexPage() {
   const db = getDb();
   const user = await getCurrentUser();
-  const isPremium = process.env.NODE_ENV === 'development' || user?.dbUser?.subscriptionTier === 'premium';
+  // Premium check bypassed for now (easy toggle later)
+  const isPremium = true; // process.env.NODE_ENV === 'development' || user?.dbUser?.subscriptionTier === 'premium';
   
   const topics = await db.select()
     .from(grammarTopics)
