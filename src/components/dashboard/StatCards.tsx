@@ -15,9 +15,9 @@ interface StatCardsProps {
 export function StatCards({ stats }: StatCardsProps) {
   const cards = [
     { label: "Reading Time", value: `${stats.readingMinutes}m`, icon: Clock3, color: "text-[var(--color-text)]", bg: "bg-[var(--color-bg-muted)]" },
-    { label: "Articles Read", value: stats.completedArticles, icon: BookOpenText, color: "text-[var(--color-accent)]", bg: "bg-[var(--color-accent-light)] dark:bg-[var(--color-accent-muted)]" },
-    { label: "RC Accuracy", value: `${stats.rcAccuracy}%`, icon: GraduationCap, color: "text-[var(--color-warm)]", bg: "bg-[var(--color-warm-light)] dark:bg-amber-900/20" },
-    { label: "Grammar Score", value: `${stats.grammarAccuracy}%`, icon: PenLine, color: "text-[var(--color-success)]", bg: "bg-[var(--color-success-light)] dark:bg-emerald-900/20" },
+    { label: "Articles Read", value: stats.completedArticles, icon: BookOpenText, color: "text-[var(--color-accent)]", bg: "bg-[var(--color-accent-light)] theme-dark:bg-[var(--color-accent-muted)]" },
+    { label: "RC Accuracy", value: `${stats.rcAccuracy}%`, icon: GraduationCap, color: "text-[var(--color-warm)]", bg: "bg-[var(--color-warm-light)] theme-dark:bg-amber-900/20" },
+    { label: "Grammar Score", value: `${stats.grammarAccuracy}%`, icon: PenLine, color: "text-[var(--color-success)]", bg: "bg-[var(--color-success-light)] theme-dark:bg-emerald-900/20" },
   ];
 
   const container = {

@@ -103,8 +103,8 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
             className={cn(
               "flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-full text-xs font-semibold transition-colors",
               analysisMode
-                ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300"
-                : "bg-[var(--color-bg-subtle)] text-[var(--color-text-subtle)] hover:bg-stone-200 dark:hover:bg-stone-800"
+                ? "bg-emerald-100 text-emerald-800 theme-dark:bg-emerald-900/40 theme-dark:text-emerald-300"
+                : "bg-[var(--color-bg-subtle)] text-[var(--color-text-subtle)] hover:bg-stone-200 theme-dark:hover:bg-stone-800"
             )}
           >
             <Lightbulb size={14} />
@@ -192,11 +192,11 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
                         exit={{ opacity: 0, height: 0 }}
                         className="mt-6 mb-8 overflow-hidden"
                       >
-                        <div className="bg-emerald-50/50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800/30 rounded-xl p-5 relative">
+                        <div className="bg-emerald-50/50 theme-dark:bg-emerald-900/10 border border-emerald-100 theme-dark:border-emerald-800/30 rounded-xl p-5 relative">
                           <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400 rounded-l-xl" />
                           <div className="flex items-start gap-3 mb-3">
                             {p.purpose && (
-                              <span className="shrink-0 text-[10px] font-bold uppercase tracking-widest text-blue-700 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 px-2.5 py-1 rounded-full mt-0.5">
+                              <span className="shrink-0 text-[10px] font-bold uppercase tracking-widest text-blue-700 theme-dark:text-blue-400 bg-blue-100 theme-dark:bg-blue-900/30 px-2.5 py-1 rounded-full mt-0.5">
                                 {p.purpose}
                               </span>
                             )}
@@ -261,7 +261,7 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
                           )}>
                             <div className="flex items-center gap-4 mb-8 mt-4">
                               <div className="h-px bg-[var(--color-border)] flex-1" />
-                              <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-500">
+                              <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 theme-dark:text-emerald-500">
                                 Checkpoint
                               </span>
                               <div className="h-px bg-[var(--color-border)] flex-1" />

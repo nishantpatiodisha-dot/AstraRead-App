@@ -62,9 +62,9 @@ export default function InlineQuestionCard({
 
           if (isAnswered) {
             if (isThisCorrect) {
-              stateStyle = "border-emerald-300 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-300";
+              stateStyle = "border-emerald-300 bg-emerald-50 theme-dark:bg-emerald-900/20 text-emerald-800 theme-dark:text-emerald-300";
             } else if (isThisSelected && !isThisCorrect) {
-              stateStyle = "border-red-200 bg-red-50/50 dark:bg-red-900/10 text-red-700/80 dark:text-red-300/80";
+              stateStyle = "border-red-200 bg-red-50/50 theme-dark:bg-red-900/10 text-red-700/80 theme-dark:text-red-300/80";
             } else {
               stateStyle = "border-[var(--color-border)] opacity-50 text-[var(--color-text-subtle)]";
             }
@@ -84,7 +84,7 @@ export default function InlineQuestionCard({
             >
               <div className="flex justify-between items-center gap-4">
                 <span>{opt}</span>
-                {isAnswered && isThisCorrect && <CheckCircle2 size={18} className="text-emerald-600 dark:text-emerald-500" />}
+                {isAnswered && isThisCorrect && <CheckCircle2 size={18} className="text-emerald-600 theme-dark:text-emerald-500" />}
                 {isAnswered && isThisSelected && !isThisCorrect && <XCircle size={18} className="text-red-500/70" />}
               </div>
             </motion.button>

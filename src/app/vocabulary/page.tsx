@@ -101,7 +101,7 @@ export default async function VocabularyPage() {
                   {item.articleTitle ? (
                     <Link 
                       href={`/reading/${item.articleSlug}`} 
-                      className="text-xs text-emerald-600 hover:text-emerald-700 dark:hover:text-emerald-500 hover:underline flex items-center gap-1 max-w-[60%] truncate"
+                      className="text-xs text-emerald-600 hover:text-emerald-700 theme-dark:hover:text-emerald-500 hover:underline flex items-center gap-1 max-w-[60%] truncate"
                       title={item.articleTitle}
                     >
                       <span className="truncate">{item.articleTitle}</span>

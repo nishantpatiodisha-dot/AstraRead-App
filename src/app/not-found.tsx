@@ -6,8 +6,8 @@ export default function NotFound() {
     <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg)] px-6">
       <div className="max-w-md text-center">
         {/* Icon */}
-        <div className="mx-auto mb-6 grid size-20 place-items-center rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/30 dark:to-emerald-900/20">
-          <BookOpenText size={36} className="text-emerald-600 dark:text-emerald-400" />
+        <div className="mx-auto mb-6 grid size-20 place-items-center rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 theme-dark:from-emerald-950/30 theme-dark:to-emerald-900/20">
+          <BookOpenText size={36} className="text-emerald-600 theme-dark:text-emerald-400" />
         </div>
 
         {/* Title */}
@@ -41,7 +41,7 @@ export default function NotFound() {
         {/* Back Home */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-xl bg-stone-950 dark:bg-white dark:text-stone-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700 dark:hover:bg-emerald-100"
+          className="inline-flex items-center gap-2 rounded-xl bg-stone-950 theme-dark:bg-white theme-dark:text-stone-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700 theme-dark:hover:bg-emerald-100"
         >
           <ArrowLeft size={16} />
           Back to Home

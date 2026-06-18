@@ -66,7 +66,7 @@ export function DailyTasks({ initialTasks }: { initialTasks: Task[] }) {
               <Check className="w-3.5 h-3.5" />
             </div>
             <div className="flex-1">
-              <p className={`font-medium transition-colors ${task.isComplete ? "text-emerald-700 dark:text-emerald-400 line-through opacity-70" : "text-[var(--color-text)]"}`}>
+              <p className={`font-medium transition-colors ${task.isComplete ? "text-emerald-700 theme-dark:text-emerald-400 line-through opacity-70" : "text-[var(--color-text)]"}`}>
                 {task.title}
               </p>
               <p className="text-xs text-[var(--color-text-subtle)] capitalize">

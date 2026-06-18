@@ -141,7 +141,7 @@ export default function RCFullSlotClient({ groupedPassages, title }: RCFullSlotC
                 onClick={() => setTimerEnabled(!timerEnabled)}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors ${timerEnabled
                     ? "bg-[var(--color-bg-subtle)] border-[var(--color-border)] text-[var(--color-text)]"
-                    : "bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400"
+                    : "bg-amber-500/10 border-amber-500/30 text-amber-600 theme-dark:text-amber-400"
                   }`}
               >
                 {timerEnabled ? <Timer size={16} /> : <TimerOff size={16} />}
@@ -221,7 +221,7 @@ export default function RCFullSlotClient({ groupedPassages, title }: RCFullSlotC
                         setCurrentQuestionIndex(0);
                       }}
                       className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors flex items-center gap-2 ${isActive
-                          ? "border-emerald-500 text-emerald-600 dark:text-emerald-400"
+                          ? "border-emerald-500 text-emerald-600 theme-dark:text-emerald-400"
                           : "border-transparent text-[var(--color-text-subtle)] hover:text-[var(--color-text)]"
                         }`}
                     >
@@ -237,7 +237,7 @@ export default function RCFullSlotClient({ groupedPassages, title }: RCFullSlotC
                 <div className="max-w-4xl mx-auto">
                   <h2 className="text-2xl font-bold font-serif mb-6 text-[var(--color-text)]">{currentPassage.title}</h2>
                   <div
-                    className="prose prose-stone dark:prose-invert prose-p:leading-loose transition-all duration-300"
+                    className="prose prose-stone theme-dark:prose-invert prose-p:leading-loose transition-all duration-300"
                     style={{ fontSize: `${fontZoom}%` }}
                   >
                     {currentPassage.passage.split('\n\n').map((para: string, i: number) => (
@@ -278,13 +278,13 @@ export default function RCFullSlotClient({ groupedPassages, title }: RCFullSlotC
 
                             if (!isSubmitted) {
                               btnClass += isSelected
-                                ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shadow-sm"
+                                ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 theme-dark:text-emerald-400 shadow-sm"
                                 : "border-[var(--color-border)] hover:border-[var(--color-text-subtle)] text-[var(--color-text)] hover:bg-[var(--color-bg-subtle)]";
                             } else {
                               if (isCorrectOption) {
-                                btnClass += "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400";
+                                btnClass += "border-emerald-500 bg-emerald-500/10 text-emerald-600 theme-dark:text-emerald-400";
                               } else if (isSelected && !isCorrectOption) {
-                                btnClass += "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400";
+                                btnClass += "border-rose-500 bg-rose-500/10 text-rose-600 theme-dark:text-rose-400";
                               } else {
                                 btnClass += "border-[var(--color-border)] opacity-50 text-[var(--color-text-subtle)]";
                               }
@@ -326,13 +326,13 @@ export default function RCFullSlotClient({ groupedPassages, title }: RCFullSlotC
                           <div className={`ml-12 mt-6 p-6 rounded-xl border ${isCorrect ? 'bg-emerald-500/5 border-emerald-500/30' : 'bg-rose-500/5 border-rose-500/30'}`}>
                             <div className="flex items-center gap-2 mb-3">
                               {isCorrect ? <CheckCircle2 className="text-emerald-500" size={20} /> : <XCircle className="text-rose-500" size={20} />}
-                              <h4 className={`font-semibold ${isCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
+                              <h4 className={`font-semibold ${isCorrect ? 'text-emerald-600 theme-dark:text-emerald-400' : 'text-rose-600 theme-dark:text-rose-400'}`}>
                                 {isCorrect ? "Correct!" : "Incorrect"}
                               </h4>
                             </div>
 
                             {(q.explanation || ((q.toneClues as string[] | null)?.length ?? 0) > 0 || ((q.trapWords as string[] | null)?.length ?? 0) > 0) && (
-                              <div className="prose prose-sm prose-stone dark:prose-invert max-w-none mt-2 pt-2 border-t border-[var(--color-border)]">
+                              <div className="prose prose-sm prose-stone theme-dark:prose-invert max-w-none mt-2 pt-2 border-t border-[var(--color-border)]">
                                 {q.explanation && <p className="text-[var(--color-text)] mb-0">{q.explanation}</p>}
 
                                 {(((q.toneClues as string[] | null)?.length ?? 0) > 0 || ((q.trapWords as string[] | null)?.length ?? 0) > 0) && (

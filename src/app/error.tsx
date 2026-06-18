@@ -19,8 +19,8 @@ export default function Error({
     <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg)] px-6">
       <div className="max-w-md text-center">
         {/* Icon */}
-        <div className="mx-auto mb-6 grid size-20 place-items-center rounded-2xl bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-950/30 dark:to-rose-900/20">
-          <AlertTriangle size={36} className="text-rose-600 dark:text-rose-400" />
+        <div className="mx-auto mb-6 grid size-20 place-items-center rounded-2xl bg-gradient-to-br from-rose-50 to-rose-100 theme-dark:from-rose-950/30 theme-dark:to-rose-900/20">
+          <AlertTriangle size={36} className="text-rose-600 theme-dark:text-rose-400" />
         </div>
 
         {/* Title */}
@@ -43,7 +43,7 @@ export default function Error({
           </button>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-xl bg-stone-950 dark:bg-white dark:text-stone-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 dark:hover:bg-emerald-100"
+            className="inline-flex items-center gap-2 rounded-xl bg-stone-950 theme-dark:bg-white theme-dark:text-stone-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 theme-dark:hover:bg-emerald-100"
           >
             <Home size={16} />
             Go Home

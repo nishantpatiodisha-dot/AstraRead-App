@@ -230,7 +230,7 @@ export default function RCPracticeClient({ passage, questions }: { passage: Pass
             <div className="w-[60%] overflow-y-auto border-r border-[var(--color-border)] p-8 md:p-12 bg-[var(--color-bg-subtle)]">
           <div className="max-w-[70ch] mx-auto">
             <div 
-              className="prose prose-stone dark:prose-invert font-reading prose-p:leading-[1.75] prose-p:mb-8 transition-all duration-300"
+              className="prose prose-stone theme-dark:prose-invert font-reading prose-p:leading-[1.75] prose-p:mb-8 transition-all duration-300"
               style={{ fontSize: `${fontZoom}%` }}
             >
               {passage.passage.split('\n\n').map((para, i) => (
@@ -271,13 +271,13 @@ export default function RCPracticeClient({ passage, questions }: { passage: Pass
 
                         if (!isQuestionSubmitted) {
                           btnClass += isSelected
-                            ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shadow-sm"
+                            ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 theme-dark:text-emerald-400 shadow-sm"
                             : "border-[var(--color-border)] hover:border-[var(--color-text-subtle)] text-[var(--color-text)] hover:bg-[var(--color-bg-subtle)]";
                         } else {
                           if (isCorrectOption) {
-                            btnClass += "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400";
+                            btnClass += "border-emerald-500 bg-emerald-500/10 text-emerald-600 theme-dark:text-emerald-400";
                           } else if (isSelected && !isCorrectOption) {
-                            btnClass += "border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400";
+                            btnClass += "border-rose-500 bg-rose-500/10 text-rose-600 theme-dark:text-rose-400";
                           } else {
                             btnClass += "border-[var(--color-border)] opacity-50 text-[var(--color-text-subtle)]";
                           }
@@ -319,14 +319,14 @@ export default function RCPracticeClient({ passage, questions }: { passage: Pass
                       <div className={`ml-12 mt-6 p-6 rounded-xl border ${isCorrect ? 'bg-emerald-500/5 border-emerald-500/30' : 'bg-rose-500/5 border-rose-500/30'}`}>
                         <div className="flex items-center gap-2 mb-3">
                           {isCorrect ? <CheckCircle2 className="text-emerald-500" size={20} /> : <XCircle className="text-rose-500" size={20} />}
-                          <h4 className={`font-semibold ${isCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
+                          <h4 className={`font-semibold ${isCorrect ? 'text-emerald-600 theme-dark:text-emerald-400' : 'text-rose-600 theme-dark:text-rose-400'}`}>
                             {isCorrect ? "Correct!" : "Incorrect"}
                           </h4>
                         </div>
 
                         {/* Content block for explanation, tone clues, trap words */}
                         {(q.explanation || (q.toneClues?.length ?? 0) > 0 || (q.trapWords?.length ?? 0) > 0) && (
-                          <div className="prose prose-sm prose-stone dark:prose-invert max-w-none mt-2 pt-2 border-t border-[var(--color-border)]">
+                          <div className="prose prose-sm prose-stone theme-dark:prose-invert max-w-none mt-2 pt-2 border-t border-[var(--color-border)]">
                             {q.explanation && <p className="text-[var(--color-text)] mb-0">{q.explanation}</p>}
 
                             {((q.toneClues?.length ?? 0) > 0 || (q.trapWords?.length ?? 0) > 0) && (

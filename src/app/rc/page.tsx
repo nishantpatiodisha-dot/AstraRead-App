@@ -121,7 +121,7 @@ export default async function RCIndexPage({
                             Added {new Date(passage.createdAt).toLocaleDateString()}
                           </span>
                         </div>
-                        <h4 className="text-lg font-serif font-bold text-[var(--color-text)] group-hover/link:text-emerald-600 dark:group-hover/link:text-emerald-400 transition-colors">
+                        <h4 className="text-lg font-serif font-bold text-[var(--color-text)] group-hover/link:text-emerald-600 theme-dark:group-hover/link:text-emerald-400 transition-colors">
                           RC Passage {passageNumber}
                         </h4>
                       </div>
@@ -131,7 +131,7 @@ export default async function RCIndexPage({
                           <Clock size={16} />
                           {passage.estimatedMinutes} min
                         </div>
-                        <div className="bg-[var(--color-bg-subtle)] border border-[var(--color-border)] px-3 py-1.5 rounded-lg flex items-center gap-1 group-hover/link:bg-emerald-500/10 group-hover/link:text-emerald-700 dark:group-hover/link:text-emerald-400 transition-colors">
+                        <div className="bg-[var(--color-bg-subtle)] border border-[var(--color-border)] px-3 py-1.5 rounded-lg flex items-center gap-1 group-hover/link:bg-emerald-500/10 group-hover/link:text-emerald-700 theme-dark:group-hover/link:text-emerald-400 transition-colors">
                           {qCount} Qs
                           <ChevronRight size={16} className="transform translate-x-0 group-hover/link:translate-x-1 transition-transform" />
                         </div>
@@ -227,7 +227,7 @@ export default async function RCIndexPage({
                                                 {passage.difficulty}
                                               </span>
                                             </div>
-                                            <h4 className="text-[var(--color-text)] font-medium group-hover/link:text-emerald-600 dark:group-hover/link:text-emerald-400 transition-colors">
+                                            <h4 className="text-[var(--color-text)] font-medium group-hover/link:text-emerald-600 theme-dark:group-hover/link:text-emerald-400 transition-colors">
                                               {passage.title}
                                             </h4>
                                           </div>
@@ -237,7 +237,7 @@ export default async function RCIndexPage({
                                               <Clock size={14} />
                                               {passage.estimatedMinutes} min
                                             </div>
-                                            <div className="bg-[var(--color-bg-subtle)] border border-[var(--color-border)] px-2.5 py-1 rounded-md flex items-center gap-1 group-hover/link:bg-emerald-500/10 group-hover/link:text-emerald-700 dark:group-hover/link:text-emerald-400 transition-colors">
+                                            <div className="bg-[var(--color-bg-subtle)] border border-[var(--color-border)] px-2.5 py-1 rounded-md flex items-center gap-1 group-hover/link:bg-emerald-500/10 group-hover/link:text-emerald-700 theme-dark:group-hover/link:text-emerald-400 transition-colors">
                                               {qCount} Qs
                                               <ChevronRight size={14} className="transform translate-x-0 group-hover/link:translate-x-1 transition-transform" />
                                             </div>

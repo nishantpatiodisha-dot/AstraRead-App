@@ -117,11 +117,11 @@ export default function RCResultsView({ passages, answers, totalSeconds, onBackT
 
           <div className="bg-[var(--color-bg-subtle)] border border-[var(--color-border)] rounded-2xl p-4 flex flex-col justify-center gap-3 shadow-sm">
             <div className="flex items-center justify-between text-sm">
-              <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium"><CheckCircle2 size={16} /> Correct</span>
+              <span className="flex items-center gap-1.5 text-emerald-600 theme-dark:text-emerald-400 font-medium"><CheckCircle2 size={16} /> Correct</span>
               <span className="font-bold text-[var(--color-text)]">{correctCount}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="flex items-center gap-1.5 text-rose-600 dark:text-rose-400 font-medium"><XCircle size={16} /> Incorrect</span>
+              <span className="flex items-center gap-1.5 text-rose-600 theme-dark:text-rose-400 font-medium"><XCircle size={16} /> Incorrect</span>
               <span className="font-bold text-[var(--color-text)]">{incorrectCount}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
@@ -156,11 +156,11 @@ export default function RCResultsView({ passages, answers, totalSeconds, onBackT
                       >
                         <div className="shrink-0 mt-0.5">
                           {isCorrect ? (
-                            <div className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 p-1.5 rounded-full"><CheckCircle2 size={20} /></div>
+                            <div className="bg-emerald-500/10 text-emerald-600 theme-dark:text-emerald-400 p-1.5 rounded-full"><CheckCircle2 size={20} /></div>
                           ) : isSkipped ? (
                             <div className="bg-stone-500/10 text-stone-500 p-1.5 rounded-full"><MinusCircle size={20} /></div>
                           ) : (
-                            <div className="bg-rose-500/10 text-rose-600 dark:text-rose-400 p-1.5 rounded-full"><XCircle size={20} /></div>
+                            <div className="bg-rose-500/10 text-rose-600 theme-dark:text-rose-400 p-1.5 rounded-full"><XCircle size={20} /></div>
                           )}
                         </div>
                         
@@ -170,9 +170,9 @@ export default function RCResultsView({ passages, answers, totalSeconds, onBackT
                             {isSkipped ? (
                               <span className="text-stone-500">Skipped (Correct was {q.correctOptionKey})</span>
                             ) : isCorrect ? (
-                              <span className="text-emerald-600 dark:text-emerald-400">Correct! Answer: {q.correctOptionKey}</span>
+                              <span className="text-emerald-600 theme-dark:text-emerald-400">Correct! Answer: {q.correctOptionKey}</span>
                             ) : (
-                              <span className="text-rose-600 dark:text-rose-400">Incorrect (Your Answer: {userAnswer}, Correct: {q.correctOptionKey})</span>
+                              <span className="text-rose-600 theme-dark:text-rose-400">Incorrect (Your Answer: {userAnswer}, Correct: {q.correctOptionKey})</span>
                             )}
                           </div>
                           {!isExpanded && (
@@ -202,9 +202,9 @@ export default function RCResultsView({ passages, answers, totalSeconds, onBackT
                               
                               let optClass = "p-4 rounded-xl border flex flex-col gap-2 ";
                               if (isCorrectOption) {
-                                optClass += "border-emerald-500 bg-emerald-500/10 text-emerald-800 dark:text-emerald-200";
+                                optClass += "border-emerald-500 bg-emerald-500/10 text-emerald-800 theme-dark:text-emerald-200";
                               } else if (isSelected && !isCorrectOption) {
-                                optClass += "border-rose-500 bg-rose-500/10 text-rose-800 dark:text-rose-200";
+                                optClass += "border-rose-500 bg-rose-500/10 text-rose-800 theme-dark:text-rose-200";
                               } else {
                                 optClass += "border-[var(--color-border)] bg-[var(--color-bg-subtle)] text-[var(--color-text)] opacity-70";
                               }
@@ -224,8 +224,8 @@ export default function RCResultsView({ passages, answers, totalSeconds, onBackT
                                   
                                   {opt.explanation && (
                                     <div className={`ml-9 mt-1 text-sm leading-relaxed ${
-                                      isCorrectOption ? "text-emerald-700 dark:text-emerald-300" :
-                                      (isSelected ? "text-rose-700 dark:text-rose-300" : "text-[var(--color-text-subtle)]")
+                                      isCorrectOption ? "text-emerald-700 theme-dark:text-emerald-300" :
+                                      (isSelected ? "text-rose-700 theme-dark:text-rose-300" : "text-[var(--color-text-subtle)]")
                                     }`}>
                                       <span className="font-semibold block mb-0.5 opacity-70 uppercase tracking-wider text-[10px]">Explanation</span>
                                       {opt.explanation}

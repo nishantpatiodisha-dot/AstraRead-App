@@ -106,7 +106,7 @@ export function LoggedOutDashboard() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="text-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50/50 to-blue-50/50 dark:from-emerald-950/20 dark:to-blue-950/20 p-6 md:p-10 mx-2 md:mx-0">
+      <div className="text-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50/50 to-blue-50/50 theme-dark:from-emerald-950/20 theme-dark:to-blue-950/20 p-6 md:p-10 mx-2 md:mx-0">
         <h3 className="text-xl md:text-2xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
           Start with last year&apos;s CAT PYQs
         </h3>
