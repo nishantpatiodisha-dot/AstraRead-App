@@ -43,10 +43,10 @@ export function LoggedOutDashboard() {
           <Sparkles className="w-4 h-4 text-emerald-500" />
           The premier CAT reading platform
         </div>
-        <h1 className="font-serif text-5xl md:text-6xl text-[var(--color-text)] mb-6 tracking-tight">
+        <h1 className="font-serif text-4xl leading-[1.15] md:text-6xl md:leading-tight text-[var(--color-text)] mb-6 tracking-tight">
           Read slowly.<br className="md:hidden" /> Think clearly.<br className="hidden md:block" /> Score higher.
         </h1>
-        <p className="text-lg md:text-xl text-[var(--color-text-subtle)] max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-base md:text-xl text-[var(--color-text-subtle)] max-w-2xl mx-auto mb-10 leading-relaxed px-4 md:px-0">
           AstraRead isn&apos;t just about answering questions. It&apos;s about fundamentally rewiring how you process complex text for the CAT exam.
         </p>
 
@@ -54,14 +54,14 @@ export function LoggedOutDashboard() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link 
             href="/rc?tab=pyq" 
-            className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20"
+            className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-semibold text-base md:text-lg hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20 w-full sm:w-auto"
           >
             Try Free — Attempt CAT PYQs
             <ArrowRight className="w-5 h-5" />
           </Link>
           <Link 
             href="/signup" 
-            className="inline-flex items-center justify-center gap-2 border-2 border-[var(--color-border)] text-[var(--color-text)] px-8 py-4 rounded-xl font-semibold text-lg hover:border-[var(--color-text)] transition-colors"
+            className="inline-flex items-center justify-center gap-2 border-2 border-[var(--color-border)] text-[var(--color-text)] px-6 py-3 md:px-8 md:py-4 rounded-xl font-semibold text-base md:text-lg hover:border-[var(--color-text)] transition-colors w-full sm:w-auto"
           >
             Sign up free
           </Link>
@@ -83,7 +83,7 @@ export function LoggedOutDashboard() {
 
       {/* What's Inside */}
       <div className="mb-16">
-        <h2 className="text-2xl font-serif font-bold text-[var(--color-text)] text-center mb-8">
+        <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text)] text-center mb-8 leading-tight">
           Everything you need to master VARC
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
@@ -106,11 +106,11 @@ export function LoggedOutDashboard() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="text-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50/50 to-blue-50/50 dark:from-emerald-950/20 dark:to-blue-950/20 p-10">
-        <h3 className="text-2xl font-serif font-bold text-[var(--color-text)] mb-3">
+      <div className="text-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50/50 to-blue-50/50 dark:from-emerald-950/20 dark:to-blue-950/20 p-6 md:p-10 mx-2 md:mx-0">
+        <h3 className="text-xl md:text-2xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
           Start with last year&apos;s CAT PYQs
         </h3>
-        <p className="text-[var(--color-text-subtle)] mb-6 max-w-lg mx-auto">
+        <p className="text-sm md:text-base text-[var(--color-text-subtle)] mb-6 max-w-lg mx-auto">
           No signup required. Attempt real CAT reading comprehension passages and see how you perform.
         </p>
         <Link 

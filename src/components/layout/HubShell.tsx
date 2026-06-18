@@ -13,7 +13,7 @@ export default function HubShell({ children, title, icon }: HubShellProps) {
       <Sidebar />
       <div className="lg:pl-64">
         <Header title={title} icon={icon} />
-        <main className="p-4 lg:p-6">{children}</main>
+        <main className="p-3 lg:p-6 overflow-hidden">{children}</main>
       </div>
     </div>
   );

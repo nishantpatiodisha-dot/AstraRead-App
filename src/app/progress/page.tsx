@@ -20,10 +20,10 @@ export default async function ProgressPage() {
   if (!user || !user.dbUser) {
     return (
       <HubShell title="Progress" icon={<Activity className="w-5 h-5 text-[var(--color-text-subtle)]" />}>
-        <div className="max-w-5xl mx-auto py-24 px-6 text-center fade-in">
-          <Activity size={64} className="mx-auto mb-6 text-emerald-500/50" />
-          <h1 className="text-3xl font-serif text-[var(--color-text)] mb-4">Track Your Mastery</h1>
-          <p className="text-[var(--color-text-subtle)] max-w-md mx-auto mb-8">
+        <div className="max-w-5xl mx-auto py-16 md:py-24 px-4 text-center fade-in">
+          <Activity size={48} className="mx-auto mb-6 text-emerald-500/50 md:w-16 md:h-16" />
+          <h1 className="text-2xl md:text-3xl font-serif text-[var(--color-text)] mb-4 leading-tight">Track Your Mastery</h1>
+          <p className="text-sm md:text-base text-[var(--color-text-subtle)] max-w-md mx-auto mb-8">
             Create a free account to track your reading streaks, RC attempts, and grammar progress over time.
           </p>
           <div className="flex justify-center gap-4">
