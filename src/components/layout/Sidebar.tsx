@@ -15,6 +15,7 @@ import {
   X,
   ChevronRight,
 } from "lucide-react";
+import { checkIsAdmin } from "@/app/actions";
 
 const navItems = [
   { href: "/", label: "Daily desk", icon: CalendarCheck, hint: "Streaks, focus and tasks" },
@@ -44,6 +45,11 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [daysLeft, setDaysLeft] = useState(getDaysUntilCAT);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    checkIsAdmin().then(setIsAdmin);
+  }, []);
 
   // Update countdown at midnight
   useEffect(() => {
@@ -124,23 +130,25 @@ export default function Sidebar() {
         })}
 
         {/* Admin section */}
-        <div className="mt-6">
-          <p
-            className="mb-2 px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.15em]"
-            style={{ color: "#71717a" }}
-          >
-            Admin
-          </p>
-          {adminItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`nav-link ${isActive(item.href) ? "active" : ""}`}
+        {isAdmin && (
+          <div className="mt-6">
+            <p
+              className="mb-2 px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.15em]"
+              style={{ color: "#71717a" }}
             >
-              <span>{item.label}</span>
-            </Link>
-          ))}
-        </div>
+              Admin
+            </p>
+            {adminItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`nav-link ${isActive(item.href) ? "active" : ""}`}
+              >
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* Bottom: CAT Countdown */}

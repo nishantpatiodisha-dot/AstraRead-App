@@ -3,8 +3,13 @@
 import { getDb } from "@/db";
 import { userDailyTasks } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
-import { requireAuth } from "@/lib/auth";
+import { requireAuth, getCurrentUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
+
+export async function checkIsAdmin() {
+  const user = await getCurrentUser();
+  return user?.isAdmin ?? false;
+}
 
 export async function toggleDailyTask(taskId: string, isComplete: boolean) {
   const user = await requireAuth();
