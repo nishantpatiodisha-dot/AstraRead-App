@@ -1,6 +1,6 @@
 # CURRENT_STATE.md — AstraRead
 
-> Last updated: 2026-06-12
+> Last updated: 2026-06-18
 
 ---
 
@@ -16,10 +16,9 @@ The project has a working production-ready build with core data models, function
 - **Root layout** with Instrument Serif (headings) + Inter (body) fonts via `next/font/google`
 - **CSS custom property design system** in `globals.css` with full light/dark token sets
 - **ThemeProvider** — client-side dark mode context using `data-theme` attribute on `<html>`
-- **Sidebar component** — dark sidebar (`#292524`) with navigation links, admin section, CAT 2026 countdown
-- **Header component** — sticky header with glassmorphism, dark mode toggle, user avatar placeholder
-- **HubShell / ImmersiveShell** — wrapper components for hub and content pages (replaces route groups)
-- **SEO metadata** — template-based titles, Open Graph, Twitter cards in root layout
+- **Bulletproof Dark Mode** — Replaced Tailwind's buggy built-in `dark:` variant (which conflicted with Turbopack & OS settings) with a custom `theme-dark:` variant to ensure absolute JS-driven toggle control.
+- **Mobile Readability** — Compressed heading sizes, tightened line heights, and disabled horizontal scrolling (`overflow-x: hidden`) specifically tailored for iOS/mobile reading.
+- **Sidebar & Header** — premium layouts with glassmorphism and HubShell/ImmersiveShell wrappers.
 
 ### Deep Reading Module (Working Prototype)
 - **Article library page** (`/reading`) — server-rendered from PostgreSQL, fallback to mock data

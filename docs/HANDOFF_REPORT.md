@@ -110,6 +110,14 @@ The immediate focus is polishing the existing features and testing:
    - *Root Cause:* The `postgres` connection pool used module-level variables that were wiped on every Turbopack HMR reload, leaking connections. Additionally, Neon drops idle connections after ~5 minutes, but the driver tried to reuse them.
    - *Fix:* Moved the connection pool to `globalThis` (survives HMR), added `idle_timeout: 10` to proactively close idle connections, and added retry logic in the API route for transient `ECONNRESET` errors.
 
+8. **Next.js Turbopack / Tailwind v4 Dark Mode Bug:**
+   - *Root Cause:* Next.js Turbopack fails to correctly parse or respect `@custom-variant dark` overrides in `globals.css`. It defaults to forcing `prefers-color-scheme: dark` for all `dark:` utility classes. On Windows machines set to Dark Mode, this caused white text to appear on white backgrounds when users manually toggled the site to Light Mode (since `[data-theme="light"]` set the background to white, but the OS preference forced the text to remain white).
+   - *Fix:* Stripped every single `dark:` utility from the codebase and replaced them with a custom `theme-dark:` variant (`@custom-variant theme-dark (&:where([data-theme="dark"], [data-theme="dark"] *));`). This bulletproof workaround severs the CSS entirely from the user's OS preference, enforcing absolute JavaScript control over the theme.
+
+9. **Mobile Reading Compression & Layout Bleed:**
+   - *Root Cause:* iOS Safari horizontal rubber-banding exposed a transparent `HubShell` revealing the `body`'s blue mesh background. Additionally, heading sizes (`3em`) were dominating mobile viewports.
+   - *Fix:* Added `overflow-x: hidden` and `bg-[var(--color-bg)] relative z-10` to `HubShell`. Aggressively compressed `first-letter` sizes and heading margins inside `ArticleReaderClient.tsx` for a tighter reading experience.
+
 **Files Modified:**
 - `src/proxy.ts` — Bypassed Clerk auth for admin routes in dev mode (fixes redirect loop)
 - `src/lib/auth.ts` — Fixed `requireAuth()` redirect mechanism
