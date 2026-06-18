@@ -69,7 +69,7 @@ export default function ImmersiveShell({ children, rightAction }: ImmersiveShell
         </div>
       </header>
 
-      <main className="w-full px-4 py-6 lg:px-8">{children}</main>
+      <div className="flex-1 w-full">{children}</div>
     </div>
   );
 }

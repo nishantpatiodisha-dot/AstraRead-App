@@ -124,12 +124,12 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
       }
     >
       {/* Single-column reading layout — always */}
-      <main className="mx-auto max-w-4xl px-6 lg:px-8 py-12 lg:py-16">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
 
         {/* Title */}
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-10 sm:mb-16">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-6 sm:mb-16">
           <h1 className={cn(
-            "text-3xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] sm:leading-[1.1] tracking-tight mb-6 sm:mb-8 font-serif",
+            "text-2xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.15] sm:leading-[1.1] tracking-tight mb-4 sm:mb-8 font-serif",
             "text-[var(--color-text)]"
           )}>
             {article.title}
@@ -138,7 +138,7 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
 
         {/* Article body */}
         <div className="relative">
-          <div className="space-y-10">
+          <div className="space-y-5 sm:space-y-10">
             {article.paragraphs.map((p, index) => {
               // Only render paragraphs up to the current soft-gate boundary
               if (index > maxVisibleIndex) return null;
@@ -173,9 +173,9 @@ export default function ArticleReaderClient({ article, initialSavedWords = [] }:
                   ) : (
                     <p
                       className={cn(
-                        "leading-[1.55] sm:leading-[1.75] transition-colors duration-300 font-reading",
+                        "leading-[1.4] sm:leading-[1.75] transition-colors duration-300 font-reading",
                         "text-[var(--color-text)]",
-                        isFirst && "first-letter:text-[3.5em] sm:first-letter:text-[4em] first-letter:font-bold first-letter:float-left first-letter:mr-3 sm:first-letter:mr-4 first-letter:leading-[0.8] first-letter:mt-1 sm:first-letter:mt-2 first-letter:font-serif break-words"
+                        isFirst && "first-letter:text-[3em] sm:first-letter:text-[4em] first-letter:font-bold first-letter:float-left first-letter:mr-2 sm:first-letter:mr-4 first-letter:leading-[0.8] first-letter:mt-1 sm:first-letter:mt-2 first-letter:font-serif break-words"
                       )}
                       style={{ fontSize: `${fontSize}px` }}
                     >
