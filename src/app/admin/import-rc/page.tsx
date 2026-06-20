@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Loader2, Save, Plus, Trash2, ArrowRight, FileText } from "lucide-react";
-import { parseQuestions, parseExplanations } from "@/lib/ingestion/parsers/question-parser";
 import { parseBulkMarkdown, BulkParsedPassage } from "@/lib/ingestion/parsers/bulk-parser";
 
 type Option = {
@@ -28,8 +27,6 @@ export default function AdminImportRC() {
 
   // Single Mode State
   const [passage, setPassage] = useState("");
-  const [rawQuestions, setRawQuestions] = useState("");
-  const [rawExplanations, setRawExplanations] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
 
   // Bulk Mode State
@@ -38,8 +35,6 @@ export default function AdminImportRC() {
   const [isParsingBulk, setIsParsingBulk] = useState(false);
 
   // UI State
-  const [isParsing, setIsParsing] = useState(false);
-  const [isParsingExplanations, setIsParsingExplanations] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [recentPassages, setRecentPassages] = useState<any[]>([]);
 
@@ -58,62 +53,7 @@ export default function AdminImportRC() {
     }
   };
 
-  const handleParseQuestions = () => {
-    setIsParsing(true);
-    try {
-      const parsed = parseQuestions(rawQuestions);
-      const formattedQuestions: Question[] = parsed.map(pq => ({
-        prompt: pq.prompt,
-        correctOptionKey: "A",
-        options: pq.options.map(o => ({
-          key: o.key,
-          text: o.text,
-          explanation: ""
-        }))
-      }));
-      setQuestions(formattedQuestions);
-    } catch (e) {
-      alert("Failed to parse questions.");
-    } finally {
-      setIsParsing(false);
-    }
-  };
 
-  const handleParseExplanations = () => {
-    if (questions.length === 0) {
-      alert("Please parse or add questions first before pasting explanations.");
-      return;
-    }
-
-    setIsParsingExplanations(true);
-    try {
-      const parsed = parseExplanations(rawExplanations);
-      const updatedQuestions = [...questions];
-
-      parsed.forEach((exp, idx) => {
-        let targetIdx = updatedQuestions.findIndex((q: any) => q.questionNumber === exp.questionNumber);
-        if (targetIdx === -1) targetIdx = idx;
-
-        if (updatedQuestions[targetIdx]) {
-          updatedQuestions[targetIdx].correctOptionKey = exp.correctOptionKey;
-          updatedQuestions[targetIdx].options.forEach((opt, oIdx) => {
-            let expl = "";
-            const specificExpl = (exp.optionExplanations as any)[opt.key];
-            if (specificExpl) {
-              expl += (expl ? "\n\n" : "") + specificExpl;
-            }
-            updatedQuestions[targetIdx].options[oIdx].explanation = expl.trim();
-          });
-        }
-      });
-      setQuestions(updatedQuestions);
-      setRawExplanations("");
-    } catch (e) {
-      alert("Failed to parse explanations.");
-    } finally {
-      setIsParsingExplanations(false);
-    }
-  };
 
   const handleBulkParse = () => {
     setIsParsingBulk(true);
@@ -159,7 +99,7 @@ export default function AdminImportRC() {
       const json = await res.json();
       if (json.success) {
         alert("Passage saved successfully!");
-        setPassage(""); setRawQuestions(""); setRawExplanations(""); setQuestions([]);
+        setPassage(""); setQuestions([]);
         loadRecentPassages();
       }
     } catch (e) {
@@ -371,50 +311,25 @@ export default function AdminImportRC() {
             </section>
 
             <section className="flex flex-col gap-6">
-              <div className="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
-                <h2 className="text-lg font-semibold text-[var(--color-text)] mb-4">Questions</h2>
-                <textarea
-                  value={rawQuestions}
-                  onChange={(e) => setRawQuestions(e.target.value)}
-                  placeholder="Paste all questions here..."
-                  className="w-full h-[150px] p-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-subtle)] text-sm text-[var(--color-text)] leading-relaxed outline-none focus:ring-2 focus:ring-emerald-500 resize-y mb-4"
-                />
-                <button
-                  onClick={handleParseQuestions}
-                  disabled={isParsing || !rawQuestions.trim()}
-                  className="w-full bg-stone-100 hover:bg-stone-200 text-stone-900 py-3 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
-                >
-                  {isParsing ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
-                  Parse Questions
-                </button>
-              </div>
-
-              <div className={`bg-[var(--color-bg)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm transition-opacity ${questions.length === 0 ? 'opacity-50 pointer-events-none' : ''}`}>
-                <h2 className="text-lg font-semibold text-[var(--color-text)] mb-4">Answers & Explanations</h2>
-                <textarea
-                  value={rawExplanations}
-                  onChange={(e) => setRawExplanations(e.target.value)}
-                  placeholder="Paste the answers block here..."
-                  className="w-full h-[120px] p-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-subtle)] text-[var(--color-text)] text-sm leading-relaxed outline-none focus:ring-2 focus:ring-emerald-500 resize-y mb-4"
-                />
-                <button
-                  onClick={handleParseExplanations}
-                  disabled={isParsingExplanations || !rawExplanations.trim() || questions.length === 0}
-                  className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 py-3 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
-                >
-                  {isParsingExplanations ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
-                  Map Explanations
-                </button>
-              </div>
-
-              {questions.length > 0 && (
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-serif font-semibold text-[var(--color-text)]">Parsed Questions ({questions.length})</h3>
-                    <button onClick={addBlankQuestion} className="text-sm font-medium text-emerald-600 hover:text-emerald-700 flex items-center gap-1">
-                      <Plus size={16} /> Add Blank
+              <div className="space-y-6">
+                <div className="flex items-center justify-between bg-[var(--color-bg)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
+                  <div>
+                    <h3 className="text-xl font-serif font-semibold text-[var(--color-text)] mb-1">Manual Questions ({questions.length})</h3>
+                    <p className="text-sm text-[var(--color-text-subtle)]">Add questions manually and provide explanations for each option.</p>
+                  </div>
+                  <button onClick={addBlankQuestion} className="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-4 py-2 rounded-xl text-sm font-medium transition-colors flex items-center gap-2">
+                    <Plus size={16} /> Add Question
+                  </button>
+                </div>
+                
+                {questions.length === 0 && (
+                  <div className="text-center py-12 bg-[var(--color-bg-subtle)] border border-[var(--color-border)] border-dashed rounded-2xl">
+                    <p className="text-[var(--color-text-subtle)] mb-4">No questions added yet.</p>
+                    <button onClick={addBlankQuestion} className="bg-white border border-[var(--color-border)] hover:border-emerald-500 hover:text-emerald-600 text-stone-600 px-4 py-2 rounded-lg text-sm font-medium transition-all">
+                      Add First Question
                     </button>
                   </div>
+                )}
                   {questions.map((q, qIdx) => (
                     <div key={qIdx} className="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
                       <div className="flex items-start justify-between mb-4">
@@ -465,7 +380,6 @@ export default function AdminImportRC() {
                     </div>
                   ))}
                 </div>
-              )}
             </section>
           </div>
         )}
